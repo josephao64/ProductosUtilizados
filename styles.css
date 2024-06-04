@@ -41,9 +41,8 @@ h1 {
 .category {
     margin-bottom: 40px;
     padding: 20px;
-    background-color: #e9ecef;
+    background-color: #e9ecef; /* Fondo gris para cada sección de productos */
     border-radius: 8px;
-    width: 100%;
     box-sizing: border-box;
 }
 
@@ -87,17 +86,13 @@ input[type="text"], input[type="number"], select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Mantener los campos en una línea */
+    gap: 10px; /* Añade un pequeño espacio entre los elementos */
 }
 
 .product .input-container > div {
     flex: 1;
     min-width: 150px;
-    margin-right: 20px;
-}
-
-.product .input-container > div:last-child {
-    margin-right: 0;
 }
 
 .checkbox-container {
@@ -176,10 +171,5 @@ input.error {
     .product .input-container > div {
         flex: 1;
         min-width: calc(50% - 10px);
-        margin-right: 20px;
-    }
-
-    .product .input-container > div:last-child {
-        margin-right: 0;
     }
 }
