@@ -39,12 +39,19 @@ h1 {
 }
 
 .category {
-    margin-bottom: 40px;
-    padding: 20px;
-    background-color: #e9ecef; /* Fondo gris para cada sección de productos */
-    border-radius: 8px;
-    box-sizing: border-box;
+    margin-bottom: 40px; /* Espacio debajo de cada sección de productos */
+    padding: 7px; /* Espacio interno alrededor del contenido de la categoría */
+    background-color: #cfdae4; /* Color de fondo gris para cada sección de productos */
+    border-radius: 8px; /* Bordes redondeados para la sección */
+    box-sizing: border-box; /* Incluir padding y border en el tamaño total del elemento */
+    width: 100%; /* Ancho completo para que el fondo gris esté pegado a los bordes de la página */
 }
+
+#product-form {
+    margin: 0; /* Eliminar márgenes para que el fondo gris ocupe todo el ancho */
+    padding: 0; /* Eliminar padding si es necesario */
+}
+
 
 .category h2 {
     margin-bottom: 20px;
