@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto Semanal Consumido Pizzería</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>CONSUMO PRODUCTOS SEMANALES PIZZERIA</h1>
+
+        <div class="branch-select-container">
+            <label for="branch-select">Seleccione la sucursal:</label>
+            <select id="branch-select">
+                <option value="JALAPA">JALAPA</option>
+                <option value="ZACAPA">ZACAPA</option>
+                <option value="ESKALA">ESKALA</option>
+                <option value="SANTA ELENA">SANTA ELENA</option>
+                <option value="POPTUN">POPTUN</option>
+                <option value="PINULA">PINULA</option>
+            </select>
+        </div>
+
+        <h2>Instrucciones</h2>
+        <div id="instructions" class="instructions-section">
+            <ul>
+                <li><strong>Presentación:</strong> Especificar la presentación.</li>
+                <li><strong>Unidades:</strong> Especificar las unidades de paquetes. Ejemplo: Caja (24 unidades), Paquete (12 botellas).</li>
+                <li><strong>Medidas:</strong> Especificar la medida de unidades. Ejemplo: Bote de salsa 300ml, Desinfectante 500ml, etc.</li>
+                <li><strong>Cantidad:</strong> Agregar cantidad de producto que se utiliza a la semana.</li>
+            </ul>
+        </div>
+
+        <h2>Formulario de Productos</h2>
+        <div id="product-form">
+            <!-- El formulario de productos se llenará dinámicamente con JavaScript -->
+        </div>
+
+        <button onclick="downloadReport()">Descargar Reporte</button>
+        <button onclick="shareReport()">Compartir Reporte</button>
+
+        <p id="error-message" class="error-message"></p>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
