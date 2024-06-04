@@ -43,6 +43,8 @@ h1 {
     padding: 20px;
     background-color: #e9ecef;
     border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .category h2 {
@@ -85,7 +87,7 @@ input[type="text"], input[type="number"], select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .product .input-container > div {
@@ -166,13 +168,15 @@ input.error {
 
     .product .input-container {
         flex-wrap: nowrap;
-        overflow-x: auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
     }
 
     .product .input-container > div {
-        flex: none;
-        width: 48%;
-        margin-right: 10px;
+        flex: 1;
+        min-width: calc(50% - 10px);
+        margin-right: 20px;
     }
 
     .product .input-container > div:last-child {
