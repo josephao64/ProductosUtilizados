@@ -188,7 +188,7 @@ window.onload = function() {
 
             const labelNotUsed = document.createElement('label');
             labelNotUsed.setAttribute('for', `not-used${globalIndex}`);
-            labelNotUsed.textContent = 'Seleccione si no utiliza el producto';
+            labelNotUsed.textContent = 'Seleccione si no pedira este producto';
             checkboxContainer.appendChild(labelNotUsed);
 
             productDiv.appendChild(checkboxContainer);
