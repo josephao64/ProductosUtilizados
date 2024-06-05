@@ -21,7 +21,6 @@ const products = [
     { name: "Queso Mex", unit: "LIBRAS", category: "Quesos" },
     { name: "Queso Cheddar 3 lb", unit: "LIBRAS", category: "Quesos" },
     { name: "Queso Mozarella", unit: "LIBRAS", category: "Quesos" },
-    { name: "Queso Blok", unit: "LIBRAS", category: "Quesos" },
     { name: "Mezcla de 5 Quesos", unit: "BOLSAS", category: "Quesos" },
 
     // Vegetales y Frutas
