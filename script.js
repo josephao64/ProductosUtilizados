@@ -207,15 +207,16 @@ function toggleProductFields(productNumber) {
     const quantityField = document.getElementById(`quantity${productNumber}`);
     const fieldsDisabled = notUsedCheckbox.checked;
 
-    presentationField.disabled = fieldsDisabled;
-    quantityField.disabled = fieldsDisabled;
-
     if (fieldsDisabled) {
-        presentationField.value = '';
-        quantityField.value = '';
-        presentationField.classList.remove('error');
-        quantityField.classList.remove('error');
+        presentationField.disabled = true;
+        quantityField.disabled = true;
+    } else {
+        presentationField.disabled = false;
+        quantityField.disabled = false;
     }
+
+    presentationField.classList.remove('error');
+    quantityField.classList.remove('error');
 }
 
 // Función para generar el reporte en PDF
