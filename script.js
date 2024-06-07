@@ -108,7 +108,6 @@ const products = [
     { name: "post-it", unit: "PAQUETE", category: "Otros" }
 ];
 
-
 window.onload = function() {
     const productForm = document.getElementById('product-form');
     const categories = {};
@@ -226,6 +225,7 @@ function toggleProductFields(productNumber) {
     if (fieldsDisabled) {
         presentationField.disabled = true;
         quantityField.disabled = true;
+        quantityField.value = ''; // Borrar la cantidad utilizada si se selecciona alguna opción
     } else {
         presentationField.disabled = false;
         quantityField.disabled = false;
@@ -285,7 +285,15 @@ function generateReport() {
         }
 
         // Agregar datos a la tabla
-        tableData.push([product.name, (notUsed || notUsed2) ? "Este producto no se utiliza" : presentation.value, (notUsed || notUsed2) ? "-" : quantity.value, product.category]);
+        let status = '';
+        if (notUsed) {
+            status = "Este producto no se pide";
+        } else if (notUsed2) {
+            status = "Este producto no se utiliza";
+        } else {
+            status = presentation.value;
+        }
+        tableData.push([product.name, status, (notUsed || notUsed2) ? "" : quantity.value, product.category]);
     });
 
     // Mostrar mensaje de error si hay campos vacíos y enfocar el primer campo inválido
