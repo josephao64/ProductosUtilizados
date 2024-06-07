@@ -143,6 +143,20 @@ window.onload = function() {
             const inputContainer = document.createElement('div');
             inputContainer.className = 'input-container';
 
+            // Etiqueta y campo para la cantidad utilizada del producto
+            const quantityDiv = document.createElement('div');
+            const labelQuantity = document.createElement('label');
+            labelQuantity.setAttribute('for', `quantity${globalIndex}`);
+            labelQuantity.textContent = 'Cantidad utilizada:';
+            quantityDiv.appendChild(labelQuantity);
+
+            const inputQuantity = document.createElement('input');
+            inputQuantity.type = 'number';
+            inputQuantity.id = `quantity${globalIndex}`;
+            quantityDiv.appendChild(inputQuantity);
+
+            inputContainer.appendChild(quantityDiv);
+
             // Etiqueta y campo para la presentación del producto
             const presentationDiv = document.createElement('div');
             const labelPresentation = document.createElement('label');
@@ -158,20 +172,6 @@ window.onload = function() {
             presentationDiv.appendChild(inputPresentation);
 
             inputContainer.appendChild(presentationDiv);
-
-            // Etiqueta y campo para la cantidad utilizada
-            const quantityDiv = document.createElement('div');
-            const labelQuantity = document.createElement('label');
-            labelQuantity.setAttribute('for', `quantity${globalIndex}`);
-            labelQuantity.textContent = 'Cantidad utilizada:';
-            quantityDiv.appendChild(labelQuantity);
-
-            const inputQuantity = document.createElement('input');
-            inputQuantity.type = 'number';
-            inputQuantity.id = `quantity${globalIndex}`;
-            quantityDiv.appendChild(inputQuantity);
-
-            inputContainer.appendChild(quantityDiv);
 
             productDiv.appendChild(inputContainer);
 
@@ -192,6 +192,22 @@ window.onload = function() {
 
             productDiv.appendChild(checkboxContainer);
 
+            const selectContainer = document.createElement('div');
+            selectContainer.className = 'select-container';
+
+            const inputNotUsed2 = document.createElement('input');
+            inputNotUsed2.type = 'checkbox';
+            inputNotUsed2.id = `not-used2${globalIndex}`;
+            inputNotUsed2.setAttribute('onchange', `toggleProductFields(${globalIndex})`);
+            selectContainer.appendChild(inputNotUsed2);
+
+            const labelNotUsed2 = document.createElement('label');
+            labelNotUsed2.setAttribute('for', `not-used2${globalIndex}`);
+            labelNotUsed2.textContent = 'Seleccione si no utiliza este producto';
+            selectContainer.appendChild(labelNotUsed2);
+
+            productDiv.appendChild(selectContainer);
+
             categoryDiv.appendChild(productDiv);
         });
 
@@ -202,9 +218,10 @@ window.onload = function() {
 // Función para habilitar/deshabilitar campos según el estado del checkbox
 function toggleProductFields(productNumber) {
     const notUsedCheckbox = document.getElementById(`not-used${productNumber}`);
+    const notUsedCheckbox2 = document.getElementById(`not-used2${productNumber}`);
     const presentationField = document.getElementById(`presentation${productNumber}`);
     const quantityField = document.getElementById(`quantity${productNumber}`);
-    const fieldsDisabled = notUsedCheckbox.checked;
+    const fieldsDisabled = notUsedCheckbox.checked || notUsedCheckbox2.checked;
 
     if (fieldsDisabled) {
         presentationField.disabled = true;
@@ -248,9 +265,10 @@ function generateReport() {
         const presentation = document.getElementById(`presentation${globalIndex}`);
         const quantity = document.getElementById(`quantity${globalIndex}`);
         const notUsed = document.getElementById(`not-used${globalIndex}`).checked;
+        const notUsed2 = document.getElementById(`not-used2${globalIndex}`).checked;
 
         // Validar que los campos no estén vacíos si el producto se utiliza
-        if (!notUsed && !presentation.value.trim()) {
+        if ((!notUsed && !notUsed2) && !presentation.value.trim()) {
             presentation.classList.add('error');
             isValid = false;
             if (!firstInvalidElement) firstInvalidElement = presentation;
@@ -258,7 +276,7 @@ function generateReport() {
             presentation.classList.remove('error');
         }
 
-        if (!notUsed && !quantity.value.trim()) {
+        if ((!notUsed && !notUsed2) && !quantity.value.trim()) {
             quantity.classList.add('error');
             isValid = false;
             if (!firstInvalidElement) firstInvalidElement = quantity;
@@ -267,7 +285,7 @@ function generateReport() {
         }
 
         // Agregar datos a la tabla
-        tableData.push([product.name, notUsed ? "Este producto no se utiliza" : presentation.value, notUsed ? "-" : quantity.value, product.category]);
+        tableData.push([product.name, (notUsed || notUsed2) ? "Este producto no se utiliza" : presentation.value, (notUsed || notUsed2) ? "-" : quantity.value, product.category]);
     });
 
     // Mostrar mensaje de error si hay campos vacíos y enfocar el primer campo inválido
